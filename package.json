@@ -1,0 +1,26 @@
+{
+  "name": "Kelompok-4-Ecommerce-Toko---BelanjaId",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ImamNurhaQ/Kelompok-4-Ecommerce-Toko---BelanjaId.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ImamNurhaQ/Kelompok-4-Ecommerce-Toko---BelanjaId/issues"
+  },
+  "homepage": "https://github.com/ImamNurhaQ/Kelompok-4-Ecommerce-Toko---BelanjaId#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "pg": "^8.7.1",
+    "sequelize": "^6.12.5"
+  }
+}

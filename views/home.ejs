@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<center>
+<html lang="en">
+<head>
+    <%- include("components/navbar") %>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <div id="main">
+        <h1>Welcome To The Belanja.Id </h1>
+        <img src="https://cf.shopee.co.id/file/8f47325062d3b3000a19000735b77a5b" alt="Arts Logo" width="100">
+        <div id="menu-box">
+        </div>
+    </div>
+<body>
+    <div class="container w-80">
+        <table border="2" class="table mb-10">
+            <tr>
+                <th>List Barang</th>
+                <th>Action</th>
+            </tr>
+                <%  for(let i = 0; i < data.length; i++){  %>
+                    <tr>
+                        <td> <%= data[i].name %> </td>
+                        <td>
+                        <a href="//<%= data[i].id %>">See Detail</a>
+                        </td>
+                    </tr>
+                <% } %>
+        </table><br>
+        <a href='/logout'> LOGOUT </a>
+    </div>
+</center>
+</body>
+</center>
+</head>
+</html>

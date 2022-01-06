@@ -11,32 +11,77 @@ class Controller {
         });
     }
 
-    // static storeDetail(req, res){
-    //     Employee.sum('salary', {
-    //         where : {
-    //             storeId: +req.params.storeId
-    //         }
-    //     })
-    //     .then((employee) => {
-    //         Store.findByPk(+req.params.storeId)
-    //         .then((store) => {
-    //             Employee.findAll({
-    //                 where : {
-    //                     storeId: +req.params.storeId
-    //                 },
-    //                 order : [
-    //                     ['position', 'ASC']
-    //                 ],
-    //             })
-    //             .then((results) => {
-    //                 res.render("storeDetail", { results, store, employee, notif: req.query.notif || "" });
-    //             })
-    //         })
-    //     })
-    //     .catch((err) => {
-    //         res.send(err.message)
-    //     })
-    // }
+    static listproduct(req, res){
+        Product.findAll()
+        .then(results => {
+            res.render('listProduct', {results})
+        }).catch(err => {
+            res.send(err)
+        });
+    }
+
+
+    static showProduct(req, res){
+        Category.findByPk(+req.params.CategoryId)
+        .then(() => {
+            Product.findAll({
+                where : {
+                    CategoryId : Number(req.params.CategoryId)
+                },
+                order : [
+                    ['name', 'ASC']
+                ],
+            })
+            .then(results => {
+                res.render('product', { results })
+            })
+        })
+        .catch(err => {
+            res.send('Ada yg tidak beres..\n' + err.message)
+        });
+    }
+
+    static productForm(req, res) {
+        Category.findAll()
+        .then(result =>{
+            res.render('productForm', {result})
+        })
+        .catch(err =>{
+            res.send(err)
+        })
+    }
+
+    static addProduct(req, res){
+        
+        Product.create({
+            name: req.body.name,
+            description: req.body.description,
+            stock: req.body.stock,
+            price: req.body.price,
+            CategoryId : +req.params.CategoryId
+        })
+        .then(result => {
+            res.redirect(`/product`)
+        })
+        .catch(err => {
+            console.log(err, 'ADA ERROR');
+            res.send(err)
+        })
+    }
+
+    static delete(req, res){
+        Product.destroy({
+            where: {
+                id: Number(req.params.id)
+            }
+        })
+        .then(result => {
+            res.redirect(`/product`)
+        })
+        .catch(err => {
+            res.send(err.message)
+        })
+    }
 
     static showLogin(req, res){
         

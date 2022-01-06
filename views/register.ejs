@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%- include('./components/head') %>
+    <%- include("./components/home") %>
 </head>
 <body>
+<center>
     <div>
         <a href="">Home</a>
     </div>
@@ -12,7 +13,7 @@
         <h2>Register</h2>
         <form action="POST">
                 <input type="text" name="email" placeholder="email"><br><br>
-                <input type="text" name="username" placeholder="username"><br><br>
+                <input type="text" name="userName" placeholder="username"><br><br>
                 <input type="text" name="password" placeholder="password"><br><br>
                 <input type="text" name="name" placeholder="name"><br><br>
                 <input type="text" name="phoneNumber" placeholder="phone number"><br><br>
@@ -20,6 +21,6 @@
                 <button><a href="">submit</a></button>
         </form>
     </div>
-
+</center>
 </body>
 </html>

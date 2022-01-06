@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/ImamNurhaQ/Kelompok-4-Ecommerce-Toko---BelanjaId#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "ejs": "^3.1.6",
     "express": "^4.17.2",
     "pg": "^8.7.1",

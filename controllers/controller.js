@@ -1,4 +1,5 @@
 const {Category, Product, Transaction, User} = require('../models')
+const {comparePassword} = require('../helpers/encryptPass')
 
 class Controller {
 
@@ -47,21 +48,25 @@ class Controller {
     static postLogin(req, res){
         User.findOne({
             where: {
-                email: req.body.email,
-                password: req.body.password
+                userName: req.body.userName,
             },
         })
-        .then(result => {
-            res.redirect('/')
+        .then(user => {
+            console.log(user);
+            if(user && comparePassword(req.body.password, user.password)){
+                req.session.user = user.userName
+                res.redirect('/')
+            }
+            
         })
         .catch( error => {
-            console.log( error, 'ADA ERROR');
+            console.log( error)
+            console.log(err.message);
             res.send( error )
         })
     }
 
     static logout(req, res){
-
         req.session.destroy(err => {
             if (err) res.send(err)
             res.redirect('/belanjaId')
@@ -73,24 +78,27 @@ class Controller {
     }
 
     static registerUser(req, res){
-        // console.log(req.body);
+        
         User.create({
             name : req.body.name,
-            phoneNumber : req.body.phoneNumber,
-            address : req.body.address,
-            userName : req.body.username,
             email : req.body.email,
+            phoneNumber : +req.body.phoneNumber,
+            userName : req.body.userName,
             password : req.body.password,
+            address : req.body.address,
             role : req.body.role
         })
         .then((result)=>{
-            console.log(result);
-            res.redirect('/')
+            res.redirect('/register')
         })
         .catch(err =>{
+            // console.log(err);
+            // console.log(err.message);
             res.send(err)
         })
     }
+
+
 
 }
 

@@ -11,8 +11,10 @@
             <%- include("components/navbar") %>
         </div>
 
-        <% if(err) %>
-        <h3><%= err %></h3>
+        <% if(err) { %>
+            <h3><%= err %></h3>
+        <% } %>
+        
 
         <form method="post">
             <label for="">Username</label><br>
@@ -20,9 +22,9 @@
             <label for="">Pasword</label><br>
             <input type="password" name="password" id=""><br><br>
             <button type="submit"> Login </button>
-        </form>
+        </form><br>
 
-        <a href="/">| Register |</a>
+        <a href="/register">| Register |</a>
     </center>
 </body>
 </html>

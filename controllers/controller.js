@@ -63,6 +63,7 @@ class Controller {
         })
         .catch( error => {
             res.redirect('/belanjaId?err=' + error.message )
+            console.log(error);
         })
     }
 
@@ -89,11 +90,9 @@ class Controller {
             role : req.body.role
         })
         .then((result)=>{
-            res.redirect('/register')
+            res.redirect('/login')
         })
         .catch(err =>{
-            // console.log(err);
-            // console.log(err.message);
             res.send(err)
         })
     }

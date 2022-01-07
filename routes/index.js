@@ -11,11 +11,10 @@ const beforeLogin = (req, res, next) => {
 
 const afterLogin = (req, res, next) => {
     if(req.session.user){
-        res.redirect('/belanjaId')
+        res.redirect('/')
     }else{
         next()
     }
-    
 }
 
 routerBelanjaId.get('/', beforeLogin, controller.home)

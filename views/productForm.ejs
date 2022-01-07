@@ -1,32 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Product</title>
-    <link rel="stylesheet" href="/style.css">
-</head>
 <center>
-<body>
     <%- include("components/navbar") %>
         <div> 
-            <a style="text-decoration: none; color: rgb(204, 152, 83);">
+            <a style="text-decoration: none; color: rgb(197, 117, 13);">
                 <h1>Add product</h1>
             </a>
-        <form method="POST" id="form-add">
-                    <label>Name</label><br>
+        <form action="/product/add" method="POST" id="form-add">
+                    <label>Name :</label><br>
                     <input type="text" name="name" autocomplete="off" placeholder=""><br><br>
-                    <label>Description</label><br>
+                    <label>Description :</label><br>
                     <input type="text" name="description" autocomplete="off" placeholder=""><br><br>
-                    <label>Stock</label><br>
+                    <label>Stock :</label><br>
                     <input type="number" name="stock" autocomplete="off" placeholder=""><br><br>
-                    <label>Price</label><br>
+                    <label>Price :</label><br>
                     <input type="number" name="price" autocomplete="off" placeholder=""><br><br>
-                    <select>
+                    <label>Category :</label><br>
+                    <select name="CategoryId">
                     <option>-- Select Category --</option>
-                    <% for (let i = 0; i <result.length; i++){ %> 
-                        <option value="<%=result[i].id %>"><%=result[i].name %></option>
+                    <% for (let i = 0; i <data.length; i++){ %> 
+                        <option name="CategoryId" value="<%=data[i].id %>"><%=data[i].name %></option>
                     <% } %> 
                     </select><br><br>
                     <input type="submit" value="Save Product" id="add-button">
@@ -35,3 +26,4 @@
 </body>
 </center>
 </html>
+

@@ -10,15 +10,6 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
 
-    //   static getCategory(name){
-    //   const data = sequelize.query(`SELECT e."name", e."description", e.stock, e.price, s.id, s.name, from "Products" e
-    //     JOIN "Categories" c
-    //     ON e."CategoryId" = c.id
-    //     WHERE e.position LIKE '%${name}%'
-    //     ORDER BY  e."name";`, {type : QueryTypes.SELECT})
-    //     return data
-    // }
-
     static associate(models) {
       // define association here
       Product.belongsTo(models.Category),
@@ -26,11 +17,46 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Product.init({
-    name: DataTypes.STRING,
-    description: DataTypes.STRING,
-    stock: DataTypes.INTEGER,
-    price: DataTypes.INTEGER,
-    CategoryId: DataTypes.INTEGER
+    name: { 
+    type: DataTypes.STRING,
+    allowNull: false,
+      validate: {
+        notNull: true,
+        notEmpty: true,
+      },
+    },
+    description: {
+    type: DataTypes.STRING,
+    allowNull: false,
+      validate: {
+        notNull: true,
+        notEmpty: true,
+      },
+    },
+    stock: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+      validate: {
+        notNull: true,
+        notEmpty: true,
+      },
+    },
+    price: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+      validate: {
+        notNull: true,
+        notEmpty: true,
+      },
+    },
+    CategoryId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+      validate: {
+        notNull: true,
+        notEmpty: true,
+      },
+    },
   }, {
     sequelize,
     modelName: 'Product',

@@ -43,9 +43,9 @@ class Controller {
     }
 
     static productForm(req, res) {
-        Category.findAll()
+        Category.findAll({})
         .then(result =>{
-            res.render('productForm', {result})
+            res.render('productForm', {data : result})
         })
         .catch(err =>{
             res.send(err)
@@ -59,13 +59,13 @@ class Controller {
             description: req.body.description,
             stock: req.body.stock,
             price: req.body.price,
-            CategoryId : +req.params.CategoryId
+            CategoryId : +req.body.CategoryId
         })
         .then(result => {
             res.redirect(`/product`)
         })
         .catch(err => {
-            console.log(err, 'ADA ERROR');
+            // console.log(err, 'ADA ERROR');
             res.send(err)
         })
     }
@@ -134,11 +134,11 @@ class Controller {
             role : req.body.role
         })
         .then((result)=>{
-            res.redirect('/register')
+            res.redirect('/belanjaId')
         })
         .catch(err =>{
             // console.log(err);
-            // console.log(err.message);
+            console.log(err.message)
             res.send(err)
         })
     }

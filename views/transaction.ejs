@@ -5,17 +5,40 @@
 </head>
 <body>
     <center>
+    <%- include("components/navbar") %>
         <div>
-            <thead>
+            <a style="text-decoration: none; color: rgb(85, 83, 204);">
+                <h1>Transaction</h1>
+            </a>
+        </div>
+
+        <div>
+            <table border='2'>
                 <tr>
-                    <th scope="col">Description</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Total</th>
-                    <th scope="col">Total Produk</th>
-                    <th scope="col">Alamat</th>
-                    <th scope="col">Action</th>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Total</th>
+                        <th>Total Produk</th>
+                        <th>Action</th>
+                    </tr>
                 </tr>
-            </thead>
+                
+                <tr>
+                    <form method="get" action="/product/transaction/<%= product.id %>/deal">
+                        <td><%= product.name %></td>
+                        <td><%= product.description %></td>
+                        <td><%= formattedDate(product.createdAt) %></td>
+                        <td><%= product.price %></td>
+                        <td><input type="number" name="stock" ><br><br></td>
+                        <td><button type= "submit">Deal</button></td>
+                    </form>
+                    
+                </tr>
+                
+            </table>
+            
         </div>
     </center>
 </body>

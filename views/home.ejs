@@ -17,13 +17,13 @@
         <table border="2" class="table mb-10">
             <tr>
                 <th>List Barang</th>
-                <th>Action</th>
+                <th>List Product</th>
             </tr>
                 <%  for(let i = 0; i < data.length; i++){  %>
                     <tr>
                         <td> <%= data[i].name %> </td>
                         <td>
-                        <a href="//<%= data[i].id %>">See Detail</a>
+                        <a href="/product/<%= data[i].id %>">Klik</a>
                         </td>
                     </tr>
                 <% } %>

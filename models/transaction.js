@@ -9,6 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+  
+
     static associate(models) {
       // define association here
       Transaction.belongsTo(models.Product),
@@ -25,6 +27,12 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Transaction',
+    hooks:{
+      beforeCreate : (transaction)=>{
+        let createDate = new Date().getTime();
+        transaction.buyingDate = `${createDate}`
+      }
+    }
   });
   return Transaction;
 };

@@ -1,5 +1,6 @@
 const routerBelanjaId = require('express').Router();
 const controller = require('../controllers/controller')
+const routerProduct = require('../routes/products')
 
 const beforeLogin = (req, res, next) => {
     if (req.session.user) {
@@ -11,7 +12,7 @@ const beforeLogin = (req, res, next) => {
 
 const afterLogin = (req, res, next) => {
     if(req.session.user){
-        res.redirect('/belanjaId')
+        res.redirect('/')
     }else{
         next()
     }
@@ -24,5 +25,8 @@ routerBelanjaId.post('/belanjaId', controller.postLogin)
 routerBelanjaId.get('/logout', beforeLogin, controller.logout)
 routerBelanjaId.get('/register', controller.formRegister)
 routerBelanjaId.post('/register', controller.registerUser)
+
+routerBelanjaId.use('/product', routerProduct)
+
 
 module.exports = routerBelanjaId

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <center>
+        <%- include("components/navbar") %> <br>
+        <button><a href="/product/add">Add Product</a></button>
+        <a href="/" style="text-decoration: none; color: rgb(81, 23, 240);"><h1 id="page_title">List Product</h1></a><br>
+        <div class="container w-80">
+            <table border="2" class="table mb-10">
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Stock</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+                <% results.forEach((result) => { %>
+                        <tr>
+                            <td> <%= result.name %> </td>
+                            <td> <%= result.description %> </td>
+                            <td> <%= result.stock %> </td>
+                            <td> <%= formatRupiah(result.price)  %> </td>
+                            <td>
+                            <a href="/product/delete/<%= result.id %>">Delete</a> 
+                            </td>
+                        </tr>
+                <% }); %>
+            </table>
+        </div>
+    </center>
+</body>
+</html>

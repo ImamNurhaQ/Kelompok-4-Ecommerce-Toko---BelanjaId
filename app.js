@@ -7,7 +7,6 @@ const port = 3000
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended: true}))
 
-app.locals.encryptpass = require('./helpers/encryptPass')
 
 app.use(session({
     secret: 'keyboard cat',
@@ -15,6 +14,7 @@ app.use(session({
     saveUninitialized: false,
     cookie: { maxAge: 60000 }
 }))
+
 app.use('/', router)
 
 app.listen(port, () => {

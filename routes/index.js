@@ -21,7 +21,7 @@ const afterLogin = (req, res, next) => {
 routerBelanjaId.get('/', beforeLogin, controller.home)
 routerBelanjaId.get('/belanjaId', afterLogin, controller.showLogin)
 routerBelanjaId.post('/belanjaId', controller.postLogin)
-routerBelanjaId.post('/logout', beforeLogin, controller.logout)
+routerBelanjaId.get('/logout', beforeLogin, controller.logout)
 routerBelanjaId.get('/register', controller.formRegister)
 routerBelanjaId.post('/register', controller.registerUser)
 routerBelanjaId.get('/product', controller.listproduct)

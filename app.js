@@ -16,6 +16,7 @@ app.use(session({
     saveUninitialized: false,
     cookie: { maxAge: 60000 }
 }))
+
 app.use('/', router)
 
 app.listen(port, () => {

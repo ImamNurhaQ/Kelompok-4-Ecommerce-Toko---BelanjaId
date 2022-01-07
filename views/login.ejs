@@ -1,24 +1,28 @@
 
-<center>
-<%- include("components/navbar") %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <%- include('./components/head') %>
 </head>
 <body>
+    <center>
+        <div>
+            <%- include("components/navbar") %>
+        </div>
 
-    <% if(error) %>
-    <h3><%= error %></h3>
+        <% if(err) %>
+        <h3><%= err %></h3>
 
-    <form method="post">
-        <label for="">Username</label><br>
-        <input type="text" name="userName" id=""><br><br>
-        <label for="">Pasword</label><br>
-        <input type="password" name="password" id=""><br><br>
-        <button type="submit"> Login </button>
-    </form>
+        <form method="post">
+            <label for="">Username</label><br>
+            <input type="text" name="userName" id=""><br><br>
+            <label for="">Pasword</label><br>
+            <input type="password" name="password" id=""><br><br>
+            <button type="submit"> Login </button>
+        </form>
 
-    <a href="/register">| Register |</a>
+        <a href="/register">| Register |</a><br>
+    </center>
 </body>
 </html>
-</center>

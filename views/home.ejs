@@ -2,14 +2,12 @@
 <center>
 <html lang="en">
 <head>
-    <%- include("components/navbar") %>
+    <%- include('./components/head') %>
+</head>
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
     <div id="main">
-        <h1>Welcome To The Belanja.Id </h1>
+        <%- include("components/navbar") %>
+        <h1>Welcome To The Belanja.Id, <%= name %> </h1>
         <img src="https://cf.shopee.co.id/file/8f47325062d3b3000a19000735b77a5b" alt="Arts Logo" width="100">
         <div id="menu-box">
         </div>

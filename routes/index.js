@@ -11,7 +11,7 @@ const beforeLogin = (req, res, next) => {
 
 const afterLogin = (req, res, next) => {
     if(req.session.user){
-        res.redirect('/')
+        res.redirect('/belanjaId')
     }else{
         next()
     }

@@ -23,7 +23,7 @@
                     <input type="number" name="stock" autocomplete="off" placeholder=""><br><br>
                     <label>Price</label><br>
                     <input type="number" name="price" autocomplete="off" placeholder=""><br><br>
-                    <select>
+                    <select  name="CategoryId">
                     <option>-- Select Category --</option>
                     <% for (let i = 0; i <result.length; i++){ %> 
                         <option value="<%=result[i].id %>"><%=result[i].name %></option>

@@ -10,7 +10,8 @@
 <body>
     <center>
         <%- include("components/navbar") %> <br>
-        <a href="/" style="text-decoration: none; color: rgb(81, 23, 240);"><h1 id="page_title"> List Product</h1></a><br>
+        <a href="" style="text-decoration: none; color: rgb(81, 23, 240);"><h1 id="page_title"> List Product</h1></a><br>
+        <a href="/" style="text-decoration: none; color: rgb(46, 102, 13);"><h3 id="page_title"> back</h3></a>
         <div class="container w-80">
             <table border="2" class="table mb-10">
                 <tr>
@@ -20,17 +21,18 @@
                     <th>Price</th>
                     <th>Action</th>
                 </tr>
-                <%  for(let i = 0; i < results.length; i++){  %>
-                        <tr>
-                            <td> <%= results[i].name %> </td>
-                            <td> <%= results[i].description %> </td>
-                            <td> <%= results[i].stock %> </td>
-                            <td> <%= formatRupiah(results[i].price)  %> </td>
-                            <td>
-                            <a href="">Buy</a> 
-                            </td>
-                        </tr>
-                <% }; %>
+
+                <% results.forEach(el => { %>
+                    <tr>
+                        <td> <%= el.name %> </td>
+                        <td> <%= el.description %> </td>
+                        <td> <%= el.stock %> </td>
+                        <td> <%= formatRupiah(el.price)  %> </td>
+                        <td>
+                        <a href="/product/transaction/<%= el.id %>">Buy</a> 
+                        </td>
+                    </tr>
+                <% }); %>
             </table>
         </div>
     </center>

@@ -3,6 +3,9 @@ const {comparePassword} = require('../helpers/encryptPass')
 
 class Controller {
 
+
+/****************************handle home*********************************/
+
     static home(req, res){
         Category.findAll()
         .then(data => {
@@ -23,7 +26,7 @@ class Controller {
 
 
     static showProduct(req, res){
-        Category.findByPk(+req.params.CategoryId)
+        Product.stockNotNull()
         .then(() => {
             Product.findAll({
                 where : {
@@ -42,15 +45,51 @@ class Controller {
         });
     }
 
+/********************************************************************************/
+
+
+/****************************handle transaction*********************************/
+
+    static formTransaction(req, res){
+        
+        Product.findByPk(+req.params.ProductId,{
+        })
+        .then((result) =>{
+            res.render('transaction', {product:result})
+            
+            
+        })
+        
+    }
+
+    static transactionSuccsess(req, res){
+        let obj = {
+            id: req.params.ProductId,
+            stock: req.query.stock
+        }
+        Product.dealTransaction(obj)
+        .then(() => res.redirect(`/`))
+        .catch((err) => res.send(err.message));
+    }
+
+
+/********************************************************************************/
+
+
+/******************handle add product and delete product*************************/
+
     static productForm(req, res) {
         Category.findAll()
         .then(result =>{
-            res.render('productForm', {result})
+            res.render('productForm', {result, name:req.body.name})
         })
         .catch(err =>{
             res.send(err)
         })
     }
+
+
+
 
     static addProduct(req, res){
         
@@ -59,16 +98,17 @@ class Controller {
             description: req.body.description,
             stock: req.body.stock,
             price: req.body.price,
-            CategoryId : +req.params.CategoryId
+            CategoryId : +req.body.CategoryId
         })
         .then(result => {
-            res.redirect(`/product`)
+            res.redirect(`/product/${+req.body.CategoryId}`)
         })
         .catch(err => {
             console.log(err, 'ADA ERROR');
             res.send(err)
         })
     }
+
 
     static delete(req, res){
         Product.destroy({
@@ -83,6 +123,11 @@ class Controller {
             res.send(err.message)
         })
     }
+
+/********************************************************************************/
+
+
+/***************************handle login and register****************************/
 
     static showLogin(req, res){
         
@@ -108,6 +153,7 @@ class Controller {
         })
         .catch( error => {
             res.redirect('/belanjaId?err=' + error.message )
+            console.log(error);
         })
     }
 
@@ -127,23 +173,22 @@ class Controller {
         User.create({
             name : req.body.name,
             email : req.body.email,
-            phoneNumber : +req.body.phoneNumber,
+            phoneNumber : req.body.phoneNumber,
             userName : req.body.userName,
             password : req.body.password,
             address : req.body.address,
             role : req.body.role
         })
         .then((result)=>{
-            res.redirect('/register')
+            res.redirect('/belanjaId')
         })
         .catch(err =>{
+            res.redirect('/register?err=' + err.message )
             // console.log(err);
-            // console.log(err.message);
-            res.send(err)
         })
     }
 
-
+/********************************************************************************/
 
 }
 

@@ -6,7 +6,7 @@ class Controller {
     static home(req, res){
         Category.findAll()
         .then(data => {
-            res.render('home', {data})
+            res.render('home', {data, name:req.session.user})
         }).catch(err => {
             res.send(err)
         });
@@ -41,8 +41,9 @@ class Controller {
 
     static showLogin(req, res){
         
-        let error = req.query.errors?.split(',') || []
-        res.render('login', {error: []})
+        let err = req.query.errors || []
+        res.render('login', {err})
+        
     }
 
     static postLogin(req, res){
@@ -52,17 +53,16 @@ class Controller {
             },
         })
         .then(user => {
-            console.log(user);
             if(user && comparePassword(req.body.password, user.password)){
                 req.session.user = user.userName
                 res.redirect('/')
+            } else {
+                throw new Error('Invalid username and password')
             }
             
         })
         .catch( error => {
-            console.log( error)
-            console.log(err.message);
-            res.send( error )
+            res.redirect('/belanjaId?err=' + error.message )
         })
     }
 

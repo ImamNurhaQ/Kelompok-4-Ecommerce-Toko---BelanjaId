@@ -1,15 +1,17 @@
 
 <center>
-<%- include("components/navbar") %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <%- include('./components/home') %>
 </head>
 <body>
+    <div>
+        <%- include("components/navbar") %>
+    </div>
 
-    <% if(error) %>
-    <h3><%= error %></h3>
+    <% if(err) %>
+    <h3><%= err %></h3>
 
     <form method="post">
         <label for="">Username</label><br>

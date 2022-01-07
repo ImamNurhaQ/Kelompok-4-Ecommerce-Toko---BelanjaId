@@ -9,6 +9,7 @@ app.use(express.urlencoded({extended: true}))
 
 app.locals.encryptpass = require('./helpers/encryptPass')
 app.locals.formatRupiah = require('./helpers/formatRupiah')
+app.locals.formattedDate = require('./helpers/formattedDate')
 
 app.use(session({
     secret: 'keyboard cat',

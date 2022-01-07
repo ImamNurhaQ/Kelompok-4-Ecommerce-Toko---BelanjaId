@@ -1,7 +1,10 @@
-const {Category, Product, Transaction, User} = require('../models')
+const {Category, Product, User} = require('../models')
 const {comparePassword} = require('../helpers/encryptPass')
 
 class Controller {
+
+
+/****************************handle home*********************************/
 
     static home(req, res){
         Category.findAll()
@@ -23,9 +26,9 @@ class Controller {
 
 
     static showProduct(req, res){
-        Category.findByPk(+req.params.CategoryId)
+        Product.stockNotNull()
         .then(() => {
-            Product.findAll({
+            return Product.findAll({
                 where : {
                     CategoryId : Number(req.params.CategoryId)
                 },
@@ -33,24 +36,60 @@ class Controller {
                     ['name', 'ASC']
                 ],
             })
-            .then(results => {
-                res.render('product', { results })
-            })
+        })
+        .then(results => {
+            res.render('product', { results })
         })
         .catch(err => {
             res.send('Ada yg tidak beres..\n' + err.message)
         });
     }
 
+/********************************************************************************/
+
+
+/****************************handle transaction*********************************/
+
+    static formTransaction(req, res){
+        
+        Product.findByPk(+req.params.ProductId,{
+        })
+        .then((result) =>{
+            res.render('transaction', {product:result})
+            
+            
+        })
+        
+    }
+
+    static transactionSuccsess(req, res){
+        let obj = {
+            id: req.params.ProductId,
+            stock: req.query.stock
+        }
+        Product.dealTransaction(obj)
+        .then(() => res.redirect(`/`))
+        .catch((err) => res.send(err.message));
+    }
+
+
+/********************************************************************************/
+
+
+/******************handle add product and delete product*************************/
+
     static productForm(req, res) {
         Category.findAll({})
         .then(result =>{
-            res.render('productForm', {data : result})
+            res.render('productForm', {result, name:req.body.name})
         })
         .catch(err =>{
             res.send(err)
         })
     }
+
+
+
 
     static addProduct(req, res){
         
@@ -70,6 +109,7 @@ class Controller {
         })
     }
 
+
     static delete(req, res){
         Product.destroy({
             where: {
@@ -83,6 +123,11 @@ class Controller {
             res.send(err.message)
         })
     }
+
+/********************************************************************************/
+
+
+/***************************handle login and register****************************/
 
     static showLogin(req, res){
         
@@ -108,6 +153,7 @@ class Controller {
         })
         .catch( error => {
             res.redirect('/belanjaId?err=' + error.message )
+            console.log(error);
         })
     }
 
@@ -127,7 +173,7 @@ class Controller {
         User.create({
             name : req.body.name,
             email : req.body.email,
-            phoneNumber : +req.body.phoneNumber,
+            phoneNumber : req.body.phoneNumber,
             userName : req.body.userName,
             password : req.body.password,
             address : req.body.address,
@@ -137,13 +183,14 @@ class Controller {
             res.redirect('/belanjaId')
         })
         .catch(err =>{
+            res.redirect('/register?err=' + err.message )
             // console.log(err);
-            console.log(err.message)
+            // console.log(err.message)
             res.send(err)
         })
     }
 
-
+/********************************************************************************/
 
 }
 

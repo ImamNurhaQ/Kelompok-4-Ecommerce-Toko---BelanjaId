@@ -16,8 +16,8 @@
                     <label>Category :</label><br>
                     <select name="CategoryId">
                     <option>-- Select Category --</option>
-                    <% for (let i = 0; i <data.length; i++){ %> 
-                        <option name="CategoryId" value="<%=data[i].id %>"><%=data[i].name %></option>
+                    <% for (let i = 0; i < result.length; i++){ %> 
+                        <option name="CategoryId" value="<%= result[i].id %>"><%=result[i].name %></option>
                     <% } %> 
                     </select><br><br>
                     <input type="submit" value="Save Product" id="add-button">
